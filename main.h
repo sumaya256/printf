@@ -6,94 +6,106 @@
 
 #include <stdio.h>
 
-#include <stdlib.h>
-
-#include <string.h>
-
 #include <unistd.h>
+
+#include <stdlib.h>
 
 #include <stdarg.h>
 
 #include <limits.h>
 
-#include <unistd.h>
+
+
+#define NULL_STRING "(null)"
+
+#define NUL '\0'
 
 
 
 /**
  *
- *  * struct func_s - Struct func_s
+ *  * struct convert - defines a structure for symbols and functions
  *
- *   * @op: The operator
+ *   *
  *
- *    * @f: The function associated
+ *    * @sym: The operator
  *
- *     */
+ *     * @f: The function associated
+ *
+ *      */
 
-typedef struct func_s
+
+
+struct convert
 
 {
 
-		char *op;
+		char *sym;
 
 			int (*f)(va_list);
 
-} func_t;
+};
 
-
-
-/* _putchar function */
-
-int _putchar(char c);
+typedef struct convert conver_t;
 
 
 
 
-
-
-
-/* rev_string function */
-
-void rev_string(char *s);
-
-
-
-
-
-/* Function that produces output according to a format */
 
 int _printf(const char *format, ...);
 
+int _putchar(char c);
+
+int format_reciever(const char *format, conver_t f_list[], va_list arg_list);
+
+int print_percent(va_list);
+
+int print_integer(va_list);
+
+int print_char(va_list);
+
+int print_string(va_list);
+
+int print_binary(va_list);
+
+int print_unsigned_integer(va_list);
+
+int print_octal(va_list list);
+
+int print_hex(va_list list);
+
+int print_HEX(va_list list);
+
+int print_String(va_list val);
+
+int print_pointer(va_list val);
+
+int print_rev(va_list l);
+
+int print_rot13(va_list list);
 
 
-/* print_str functions */
 
-int _print_char(va_list args);
+int print_number(va_list args);
 
-int _print_str(va_list args);
+unsigned int base_len(unsigned int, int);
 
-int print_percent(va_list ap);
+char *rev_string(char *);
 
+void write_base(char *str);
 
+char *_memcpy(char *dest, char *src, unsigned int n);
 
-/* print_int functions */
+int print_unsgined_number(unsigned int n);
 
-int print_int_helper(int n);
+int hex_check(int num, char x);
 
-int print_int(va_list ap);
+int print_hex_aux(unsigned long int num);
 
+int isNonAlphaNumeric(char c); 
 
+int _puts(char *str);
 
-/* print_binary functions */
+char *convert(unsigned long int num, int base, int lowercase);
 
-int print_binary(va_list ap);
-
-
-
-/* print_unsigned functions */
-
-int print_unsigned_int(va_list ap);
-
-
-
-#endif /* MAIN_H */
+#endif
